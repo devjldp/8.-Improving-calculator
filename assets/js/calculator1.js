@@ -28,6 +28,9 @@ document.addEventListener("DOMContentLoaded", function(){
                 } else if (button.getAttribute("data-type") == 'number'){
                         if(console2.innerHTML == '0'){
                             console2.innerHTML = button.innerHTML;
+                        } else if(console1.innerHTML == console2.innerHTML){
+                            console1.innerHTML = 0;
+                            console2.innerHTML = button.innerHTML;
                         } else{
                             console2.innerHTML += button.innerHTML;
                         }   
@@ -35,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function(){
                     operations.push(button.getAttribute("data-operation"));
                     if(operations[0]=='root-square' || operations[0]=='pow'){
                         let number = parseFloat(console2.innerHTML);
-                        console1.innerHTML = doOperation(operations[1],number, 0);
+                        console1.innerHTML = doOperation(operations[0],number, 0);
                         console2.innerHTML = console1.innerHTML;
                         operations.shift();
                     } else{                        
