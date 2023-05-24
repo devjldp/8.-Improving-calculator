@@ -32,9 +32,16 @@ document.addEventListener("DOMContentLoaded", function(){
                             console2.innerHTML += button.innerHTML;
                         }   
                 } else if(button.getAttribute("data-type") == 'operator'){
-                        operations.push(button.getAttribute("data-operation"));
+                    operations.push(button.getAttribute("data-operation"));
+                    if(operations[0]=='root-square' || operations[0]=='pow'){
+                        let number = parseFloat(console2.innerHTML);
+                        console1.innerHTML = doOperation(operations[1],number, 0);
+                        console2.innerHTML = console1.innerHTML;
+                        operations.shift();
+                    } else{                        
                         console1.innerHTML = console2.innerHTML;
                         console2.innerHTML += operators[operations[0]];
+                    }
                 } else if(button.getAttribute("data-type") == 'delete'){
                         console2.innerHTML = deleteNumber(console2.innerHTML);
                 }
