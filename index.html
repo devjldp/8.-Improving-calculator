@@ -23,12 +23,12 @@
             <div id="console">
                 <div class="row">
                     <div class="col">
-                        <p id="console-1">0</p>
+                        <p id="console-1"></p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
-                        <p id="console-2">0</p>
+                        <p id="console-2"></p>
                     </div>
                 </div>   
             </div>
@@ -42,13 +42,13 @@
             <div class="btn btn--orange" data-type="clean" id="clear">AC</div>
         </div>
         <div class="col-3 green">
-            <div class="btn btn--orange" >C</div>
+            <div class="btn btn--orange" data-type="delete">C</div>
         </div>
         <div class="col-3 green">
-            <div class="btn btn--orange " ><i class="fa-solid fa-square-root-variable"></i></div>
+            <div class="btn btn--orange" data-type="operator" data-operation="root-square" ><i class="fa-solid fa-square-root-variable"></i></div>
         </div>
         <div class="col-3 green">
-            <div class="btn btn--orange" ><i class="fa-solid fa-superscript"></i></div>
+            <div class="btn btn--orange" data-type="operator" data-operation="pow"><i class="fa-solid fa-superscript"></i></div>
         </div>
         </div>
     <!-- row-2 -->
@@ -63,22 +63,22 @@
             <div class="btn btn--orange  number" data-type="number">9</div>
         </div>
         <div class="col-3">
-            <div class="btn btn--orange  operator" data-type="division" id="division"><i class="fa-solid fa-divide"></i></div>
+            <div class="btn btn--orange  operator" data-type="operator" data-operation="division"><i class="fa-solid fa-divide"></i></div>
         </div>
         </div> 
     <!-- row-3  -->
         <div class="row mt-1">
         <div class="col-3">
-            <div class="btn btn--orange number inline-block" data-type="number">4</div>
+            <div class="btn btn--orange number" data-type="number">4</div>
         </div>
         <div class="col-3">
-            <div class="btn btn--orange  number inline-block" data-type="number">5</div>
+            <div class="btn btn--orange  number" data-type="number">5</div>
         </div>
         <div class="col-3">
-            <div class="btn btn--orange  number inline-block" data-type="number">6</div>
+            <div class="btn btn--orange  number" data-type="number">6</div>
         </div>
         <div class="col-3">
-            <div class="btn btn--orange  operator inline-block" data-type="multiply" id="multiply"><i class="fa-solid fa-xmark"></i></div>
+            <div class="btn btn--orange  operator" data-type="operator" data-operation="multiply"><i class="fa-solid fa-xmark"></i></div>
         </div>
         </div> 
     <!-- row-4  -->
@@ -93,7 +93,7 @@
             <div class="btn btn--orange number" data-type="number">3</div>
         </div>
         <div class="col-3">
-            <div class="btn btn--orange operator" data-type="substract" id="substract"><i class="fa-solid fa-minus"></i></div>
+            <div class="btn btn--orange operator" data-type="operator" data-operation="substract"><i class="fa-solid fa-minus"></i></div>
         </div>
         </div>     
     <!-- row-5  -->
@@ -105,10 +105,10 @@
                 <div class="btn btn--orange number" data-type="number-decimal" id="float">.</div>
             </div>
             <div class="col-3">
-                <div class="btn btn--orange number" data-type="equal" id="equal">=</div>
+                <div class="btn btn--orange" data-type="equal" data-type="equal">=</div>
             </div>
             <div class="col-3">
-                <div class="btn btn--orange operator" id='addition' data-type="addition"><i class="fa-solid fa-plus"></i></div>
+                <div class="btn btn--orange operator"  data-type="operator" data-operation='addition'><i class="fa-solid fa-plus"></i></div>
             </div>
         </div>
     <!--    ./buttons            -->
@@ -118,6 +118,7 @@
     <!--     ./Calculator body     -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
-    <script src="assets/js/calculator.js"></script>
+    <!-- <script src="assets/js/calculator.js"></script> -->
+    <script src="assets/js/calculator1.js"></script>
 </body>
 </html>
