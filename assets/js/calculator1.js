@@ -20,22 +20,37 @@ document.addEventListener("DOMContentLoaded", function(){
         button.addEventListener('click', () => {
             let console1 = document.getElementById("console-1");
             let console2 = document.getElementById("console-2");
+
+            // Getting the attribute type to apply conditions.
+            let attributeType = button.getAttribute("data-type");
+            let attributeOperator = button.getAttribute("data-operation")
+
             
             // check length or operations array
             if(operations.length == 0){
-                if(button.getAttribute("data-type") == 'clean'){
+                if(attributeType == 'clean'){
                     clean(console1, console2, operations);
-                } else if (button.getAttribute("data-type") == 'number'){
-                        if(console2.innerHTML == '0'){
-                            console2.innerHTML = button.innerHTML;
+                } else if (attributeType == 'number' || attributeType == 'number-float'){
+                        if(console2.innerHTML == '0' || console2.innerHTML == ''){
+                            if(attributeType == 'number-float'){
+                                console2.innerHTML = 0 + button.innerHTML;
+                            } else{   
+                                console2.innerHTML = button.innerHTML;
+                            }
                         } else if(console1.innerHTML == console2.innerHTML){
                             console1.innerHTML = 0;
                             console2.innerHTML = button.innerHTML;
                         } else{
-                            console2.innerHTML += button.innerHTML;
+                            if (console2.innerHTML.includes('.')){
+                                if (attributeType != 'number-float'){
+                                    console2.innerHTML += button.innerHTML;
+                                } 
+                            } else{
+                                console2.innerHTML += button.innerHTML;
+                            }
                         }   
-                } else if(button.getAttribute("data-type") == 'operator'){
-                    operations.push(button.getAttribute("data-operation"));
+                } else if(attributeType == 'operator'){
+                    operations.push(attributeOperator);
                     if(operations[0]=='root-square' || operations[0]=='pow'){
                         let number = parseFloat(console2.innerHTML);
                         console1.innerHTML = doOperation(operations[0],number, 0);
@@ -45,32 +60,45 @@ document.addEventListener("DOMContentLoaded", function(){
                         console1.innerHTML = console2.innerHTML;
                         console2.innerHTML += operators[operations[0]];
                     }
-                } else if(button.getAttribute("data-type") == 'delete'){
+                } else if(attributeType == 'delete'){
                         console2.innerHTML = deleteNumber(console2.innerHTML);
                 }
             } else if(operations.length == 1){
                 if(operations[0] == 'equal' || operations[0] == 'root-square' || operations[0] == 'pow'){
-                    if(button.getAttribute("data-type") == 'clean'){
+                    if(attributeType == 'clean'){
                         clean(console1, console2, operations);
-                    } else if (button.getAttribute("data-type") == 'number'){
+                    } else if (attributeType == 'number'){
                         console2.innerHTML = button.innerHTML;
                         console1.innerHTML = 0;
                         operations.shift();
-                    } else if(button.getAttribute("data-type") == 'operator'){
-                        operations.push(button.getAttribute("data-operation"));
+                    } else if(attributeType == 'operator'){
+                        operations.push(attributeOperator);
                         console1.innerHTML = console2.innerHTML;
                         operations.shift();
                         console2.innerHTML += operators[operations[0]];
                     }
                 }  
                 else{
-                    if(button.getAttribute("data-type") == 'clean'){
+                    if(attributeType == 'clean'){
                         clean(console1, console2, operations);
-                    } else if (button.getAttribute("data-type") == 'number'){
-                        console2.innerHTML += button.innerHTML;
-                        numbers = splitString(console2.innerHTML, operators[operations[0]]);
-                        console1.innerHTML = doOperation(operations[0],numbers[0], numbers[1]);   
-                    } else if(button.getAttribute("data-type") == 'operator'){
+                    } else if (attributeType == 'number' || attributeType == 'number-float'){
+                        if(console2.innerHTML.includes('.')){
+                            if(attributeType !== 'number-float'){
+                                console2.innerHTML += button.innerHTML;
+                                numbers = splitString(console2.innerHTML, operators[operations[0]]);
+                                console1.innerHTML = doOperation(operations[0],numbers[0], numbers[1]);
+                            } else{
+                                let num2 = splitString(console2.innerHTML, operators[operations[0]])[1];
+                                if(!num2.toString().includes('.')){
+                                    console2.innerHTML += button.innerHTML;
+                                } 
+                            }
+                        } else {
+                            console2.innerHTML += button.innerHTML;
+                            numbers = splitString(console2.innerHTML, operators[operations[0]]);
+                            console1.innerHTML = doOperation(operations[0],numbers[0], numbers[1]);
+                        }                    
+                    } else if(attributeType == 'operator'){
                         operations.push(button.getAttribute("data-operation"));
                         if((operations[1] != 'root-square') && (operations[1] != 'pow')){
                             console2.innerHTML = console1.innerHTML;
